@@ -1,9 +1,15 @@
 pipeline {
     agent any
-    stages { 
+    environment { 
+        CC = 'clang'
+    }
+    stages {
         stage('Example') {
+            environment { 
+                AN_ACCESS_KEY = credentials('my-predefined-secret-text') 
+            }
             steps {
-                echo 'Hello World'
+                sh 'printenv'
             }
         }
     }
